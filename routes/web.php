@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SalesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +16,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('pages.home');
-});
+
+Route::get('/admin', [AdminController::class, 'index']);
+Route::post('/login', [AdminController::class, 'login']);
+Route::get('/logout', [AdminController::class, 'logout']);
+Route::get('/dashboard', [AdminController::class, 'dashboard']);
+
+
+Route::resource('/product', ProductController::class);
+Route::resource('/sale', SalesController::class);
