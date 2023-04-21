@@ -1,49 +1,72 @@
 @extends('layout.page')
 @section('banner')
                 
-<div class="banner">
-    <div class="banner__img">
-        <div class="slick__banner">
-            <div class="banner-item">
-                <img src="./assets/imgs/khuyen-mai/banner-1.jpg" alt="">
-            </div>
-            <div class="banner-item">
-                <img src="./assets/imgs/khuyen-mai/banner-2.jpg" alt="">
-            </div>
+{{-- <section>
+    <div class="video__intro">
+        <div class="bg-video"></div>
+        <div class="video__main container">
+            <video
+                id="my-video"
+                class="video-js vjs-default-skin"
+                controls
+                preload="auto"
+                poster="{{asset('front-end/assets/imgs/khuyen-mai/banner-video.jpg')}}"
+                data-setup='{ "playbackRates": [0.5, 1, 1.5, 2] }'
+            >
+                <source src="{{asset('front-end/assets/video/video-anh-muoi.mp4')}}" type="video/mp4" />
+            </video>
         </div>
-        <div class="slick-slider-dots"></div>
-    </div>
-</div>
-@endsection
 
-@section('content')
-<section>
-    <div class="box__sales">
-        <div class="container sales__container">
-            <div class="sales__main">
-                <div class="sales__left">
-                    <div class="sales__title">sale<span>10%</span> còn</div>
-                    <div class="timer">
+    </div>
+</section> --}}
+<section class="sales__section">
+    <div class="sales">
+        <div class="box__sales">
+            <!-- <div class="container sales__container">
+                <div class="sales__main row">
+                    <div class="col-lg-8 col-6">
+                        <div class="sales__title">sale<span>10%</span></div>
+                        <div class="sales__info">
+                            <div class="sales__name">Cơm đồng giá !</div>
+                            <div class="sales__price">
+                                <span class="price-old">35.000đ</span>
+                                <span>còn</span>
+                                <span class="price-new">30.000đ</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timer timer-hide col-lg-4 col-6">
                         <div id="flipdown" class="flipdown"></div>
                     </div>
                 </div>
-                <div class="sales__right">
-                    <div class="sales__name">Cơm đồng giá</div>
-                    <div class="sales__price">
-                        <span class="price-old">35.000đ</span>
-                        <span>còn</span>
-                        <span class="price-new">30.000đ</span>
-                    </div>
-                    <img src="./assets/imgs/rice.png" class="rice-shape" alt="">
-                    <div class="smoke-wrap">
-                        <img src="./assets/imgs/smoke.png" class="smoke" alt="">
-                        <img src="./assets/imgs/smoke.png" class="smoke-2" alt="">
-                    </div>
-                </div>
+            </div> -->
+            <div class="box__sales-title">
+                "Giờ vàng mua hàng bắt đầu từ 18:00 hàng ngày"
+            </div>
+        </div>
+        <div class="timeslot">
+            <div class="container">
+                <ul class="timeslot-list">
+                    <li class="timeslot-item active">
+                        <div class="timeslot__time">15:00 - 16:00</div>
+                        <p>Sắp diễn ra</p>
+                    </li>
+                    <li class="timeslot-item">
+                        <div class="timeslot__time">16:00 - 17:00</div>
+                        <p>Sắp diễn ra</p>
+                    </li>
+                    <li class="timeslot-item">
+                        <div class="timeslot__time">17:00 - 18:00</div>
+                        <p>Chưa diễn ra</p>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
 </section>
+@endsection
+
+@section('content')
 <div class="product">
     <div class="container">
         <!-- <a href="#khuyen-mai" class="banner__marketing">
@@ -61,181 +84,53 @@
 
         <div class="product__body">
             <div class="row">
-                <div class="col-lg-4 col-sm-6 mb-4 ">
-                    <div class="product__item">
-                        <span class="product__sales">-10%</span>
-                        <div class="product__image">
-                            <img src="./assets/imgs/com/heo-quay.png" alt="">
-                        </div>
-                        <div class="product__info">
-                            <div class="product__info-top">
-                                <span>Pork</span>
-                                <span class="star">
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                </span>
-                            </div>
-                            <div class="product__info-middle">Cơm heo quay</div>
-                            <div class="product__info-bottom">
-                                <span>Giá:</span>
-                                <span class="new">30.000đ</span>
-                                <span class="old">35.000đ</span>
-                            </div>
-                            <div class="progress">
-                                <div class="progress-done"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6 mb-4 ">
-                    <div class="product__item">
-                        <span class="product__sales">-10%</span>
-                        <div class="product__image">
-                            <img src="./assets/imgs/com/heo-quay-tieu-xanh.png" alt="">
-                        </div>
-                        <div class="product__info">
-                            <div class="product__info-top">
-                                <span>Pork</span>
-                                <span class="star">
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                </span>
-                            </div>
-                            <div class="product__info-middle">Cơm sốt tiêu xanh</div>
-                            <div class="product__info-bottom">
-                                <span>Giá:</span>
-                                <span class="new">30.000đ</span>
-                                <span class="old">35.000đ</span>
-                            </div>
-                            <div class="progress">
-                                <div class="progress-done"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6 mb-4 ">
-                    <div class="product__item">
-                        <span class="product__sales">-10%</span>
-                        <div class="product__image">
-                            <img src="./assets/imgs/com/dui-ga-chien.png" alt="">
-                        </div>
-                        <div class="product__info">
-                            <div class="product__info-top">
-                                <span>Pork</span>
-                                <span class="star">
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                </span>
-                            </div>
-                            <div class="product__info-middle">Cơm đùi gà chiên</div>
-                            <div class="product__info-bottom">
-                                <span>Giá:</span>
-                                <span class="new">30.000đ</span>
-                                <span class="old">35.000đ</span>
-                            </div>
-                            <div class="progress">
-                                <div class="progress-done"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6 mb-4 ">
-                    <div class="product__item">
-                        <span class="product__sales">-10%</span>
-                        <div class="product__image">
-                            <img src="./assets/imgs/com/dui-ga-tieu-xanh.png" alt="">
-                        </div>
-                        <div class="product__info">
-                            <div class="product__info-top">
-                                <span>Pork</span>
-                                <span class="star">
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                </span>
-                            </div>
-                            <div class="product__info-middle">Cơm đùi gà sốt tiêu xanh</div>
-                            <div class="product__info-bottom">
-                                <span>Giá:</span>
-                                <span class="new">30.000đ</span>
-                                <span class="old">35.000đ</span>
-                            </div>
-                            <div class="progress">
-                                <div class="progress-done"></div>
-                            </div>
-                        </div>
 
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6 mb-4 ">
-                    <div class="product__item">
-                        <span class="product__sales">-10%</span>
-                        <div class="product__image">
-                            <img src="./assets/imgs/com/canh-ga-chien.png" alt="">
-                        </div>
-                        <div class="product__info">
-                            <div class="product__info-top">
-                                <span>Pork</span>
-                                <span class="star">
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                </span>
+                @foreach ($product_1 as $item => $value)
+                    
+                    <div class="col-lg-4 col-sm-6 mb-4 ">
+                        <div class="product__item">
+                            <span class="product__sales">-10%</span>
+                            <div class="product__image">
+                                <img src="{{asset('uploads/product/'.$value->image)}}" alt="">
                             </div>
-                            <div class="product__info-middle">Cơm Cánh gà chiên</div>
-                            <div class="product__info-bottom">
-                                <span>Giá:</span>
-                                <span class="new">30.000đ</span>
-                                <span class="old">35.000đ</span>
-                            </div>
-                            <div class="progress">
-                                <div class="progress-done"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6 mb-4 ">
-                    <div class="product__item">
-                        <span class="product__sales">-10%</span>
-                        <div class="product__image">
-                            <img src="./assets/imgs/com/canh-ga-sot-tieu-sanh.png" alt="">
-                        </div>
-                        <div class="product__info">
-                            <div class="product__info-top">
-                                <span>Pork</span>
-                                <span class="star">
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                </span>
-                            </div>
-                            <div class="product__info-middle">Cơm cánh gà sốt tiêu xanh</div>
-                            <div class="product__info-bottom">
-                                <span>Giá:</span>
-                                <span class="new">30.000đ</span>
-                                <span class="old">35.000đ</span>
-                            </div>
-                            <div class="progress">
-                                <div class="progress-done"></div>
+                            <div class="product__info">
+                                <div class="product__info-top">
+                                    <span>Pork</span>
+                                    <span class="star">
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                    </span>
+                                </div>
+                                <div class="product__info-middle">{{$value->name}}</div>
+                                <div class="product__info-bottom">
+                                    <span>Giá:</span>
+                                    <span class="new">30.000đ</span>
+                                    <span class="old">{{$value->price_old}}đ</span>
+                                    <a href="#" class="add__to-cart"><i class="bi bi-cart-plus-fill"></i></a>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-done"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+
+                    @if ($item == 2)
+                        
+                    <div class="mt-4 mb-4 show-banner-mobile">
+                        <a href="#form" class="d-block">
+                            <img src="{{asset('front-end/assets/imgs/khuyen-mai/banner-4.jpg')}}" alt="">
+                        </a>
+                    </div>
+
+                    @endif
+
+                @endforeach
+
+
             </div>
 
             <img src="./assets/imgs/svg/asset-svg2.svg" class="svg-shape-1" alt="">
@@ -246,34 +141,38 @@
 </div>
 
 <div class="promotion" id="khuyen-mai">
-    <div>
-        <img src="./assets/imgs/khuyen-mai/banner-3.jpg" alt="">
-    </div>
-    <div class="container mt-5">
+    <div class="container">
+        <div class="mb-5">
+            <a href="#form" class="d-block">
+                <img src="./assets/imgs/khuyen-mai/banner-3.jpg" alt="">
+            </a>
+        </div>
+        <div id="form"></div>
         <div class="row">
             <div class="col-lg-6">
                 <div class="promotion-left">
                     <img src="./assets/imgs/khuyen-mai/gift.png" class="gift-bg" alt="">
                     <div class="title">
                         "Cơm Heo Quay Anh Mười"
+
                     </div>
                     <div class="desc">Chúng tôi muốn cảm ơn tất cả những khách hàng đã đồng hành và ủng hộ chúng tôi trong suốt thời gian qua. Vì vậy, chúng tôi muốn gửi tặng các bạn một phần quà nhỏ để thể hiện lòng tri ân của chúng tôi.</div>
-                    <div class="desc">Để tham gia chương trình các bạn vui lòng <strong>điền thông tin vào form hoặc gọi trực tiếp</strong> cho chúng tôi để được tư vấn chi tiết hơn.</div>
+                    <div class="desc">Để nhận thông tin ưu đãi sớm nhất vui lòng <strong>điền thông tin vào form</strong> dưới đây.</div>
                     <span class="btn-promotion">
-                        Điền thông tin nhận quà
+                       Đăng ký nhận ưu đãi
                         <i class="bi bi-hand-index-thumb-fill"></i>
                     </span>
                 </div>
             </div>
             <div class="col-lg-6">
-                <form action="" class="form-promotion">
+                <form class="form-promotion" id="contact-form">
                     <!-- <img src="./assets/imgs/khuyen-mai/vong-quay-gift.png" class="form-vongquay" alt=""> -->
                     <div class="ft-title" style="margin-top: 0;">Gửi thông tin</div>
-                    <input type="text" name="name" placeholder="Tên của bạn">
-                    <input type="number" name="phone" placeholder="Số điện thoại">
+                    <input type="text" name="name" placeholder="Tên của bạn (*)" required>
+                    <input type="number" name="phone" id="inputPhone" placeholder="Số điện thoại (*)" required>
                     <input type="email" name="email" placeholder="Email">
                     <input type="text" name="address" placeholder="Địa chỉ liên hệ">
-                    <button class="booking__link" style="border: none;">
+                    <button class="booking__link" type="submit" style="border: none;">
                         Xác nhận
                     </button>
                 </form>
@@ -283,6 +182,7 @@
 </div>
 
 <div class="product white">
+    
     <div class="container">
         <div class="product__menu">
             <div class="product__head">
@@ -290,88 +190,148 @@
             </div>
         </div>
 
-        <div class="product__body product-sale">
+        <div class="product__body">
             <div class="row">
-                <div class="col-lg-3 col-md-4 col-6 mb-4">
+                <div class="col-lg-4 col-sm-6 mb-4">
                     <div class="product__item">
                         <div class="product__image">
                             <img src="./assets/imgs/mon-them/canh-bap.png" alt="">
                         </div>
                         <div class="product__info">
+                            <div class="product__info-top">
+                                <span>Soup</span>
+                                <span class="star">
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star"></i>
+                                </span>
+                            </div>
                             <div class="product__info-middle">Canh bắp</div>
                             <div class="product__info-bottom">
                                 <span>Giá:</span>
                                 <span class="new">12.000đ</span>
                             </div>
-                            
+                            <a href="#" class="btn__order-now"><i class="bi bi-cart-plus-fill"></i></a>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-4 col-6 mb-4">
+                <div class="col-lg-4 col-sm-6 mb-4">
                     <div class="product__item">
                         <div class="product__image">
                             <img src="./assets/imgs/mon-them/canh-kho-qua.png" alt="">
                         </div>
                         <div class="product__info">
+                            <div class="product__info-top">
+                                <span>Soup</span>
+                                <span class="star">
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                </span>
+                            </div>
                             <div class="product__info-middle">Canh khổ qua</div>
                             <div class="product__info-bottom">
                                 <span>Giá:</span>
                                 <span class="new">12.000đ</span>
                             </div>
-                            
+                            <a href="#" class="btn__order-now"><i class="bi bi-cart-plus-fill"></i></a>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-4 col-6 mb-4">
+                <div class="col-lg-4 col-sm-6 mb-4">
                     <div class="product__item">
                         <div class="product__image">
                             <img src="./assets/imgs/mon-them/canh-cai.png" alt="">
                         </div>
                         <div class="product__info">
+                            <div class="product__info-top">
+                                <span>Soup</span>
+                                <span class="star">
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                </span>
+                            </div>
                             <div class="product__info-middle">Canh cải ngọt</div>
                             <div class="product__info-bottom">
                                 <span>Giá:</span>
                                 <span class="new">12.000đ</span>
                             </div>
-                            
+                            <a href="#" class="btn__order-now"><i class="bi bi-cart-plus-fill"></i></a>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-4 col-6 mb-4">
+                <div class="col-lg-4 col-sm-6 mb-4">
                     <div class="product__item">
                         <div class="product__image">
                             <img src="./assets/imgs/mon-them/com-trang.png" alt="">
                         </div>
                         <div class="product__info">
+                            <div class="product__info-top">
+                                <span>Rice</span>
+                                <span class="star">
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star"></i>
+                                </span>
+                            </div>
                             <div class="product__info-middle">Cơm trắng</div>
                             <div class="product__info-bottom">
                                 <span>Giá:</span>
                                 <span class="new">7.000đ</span>
                             </div>
-                            
+                            <a href="#" class="btn__order-now"><i class="bi bi-cart-plus-fill"></i></a>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-4 col-6 mb-4">
+                <div class="col-lg-4 col-sm-6 mb-4">
                     <div class="product__item">
                         <div class="product__image">
-                            <img src="./assets/imgs/mon-them/com-trang.png" alt="">
+                            <img src="./assets/imgs/mon-them/com-rang.png" alt="">
                         </div>
                         <div class="product__info">
+                            <div class="product__info-top">
+                                <span>Rice</span>
+                                <span class="star">
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star"></i>
+                                </span>
+                            </div>
                             <div class="product__info-middle">Cơm rang</div>
                             <div class="product__info-bottom">
                                 <span>Giá:</span>
                                 <span class="new">10.000đ</span>
                             </div>
-                            
+                            <a href="#" class="btn__order-now"><i class="bi bi-cart-plus-fill"></i></a>
                         </div>
                     </div>
                 </div>
             </div>
 
+            <img src="./assets/imgs/svg/asset-svg3.svg" class="svg-shape-1" alt="">
+            <img src="./assets/imgs/svg/asset-svg2.svg" class="svg-shape-2" alt="">
+            <img src="./assets/imgs/svg/asset-svg5.svg" class="svg-shape-3" alt="">
+            <img src="./assets/imgs/svg/asset-svg8.svg" class="leaf-shape-3" alt="">
         </div>
 
+        <div class="mt-4 hide-banner-mobile">
+            <a href="#form" class="d-block">
+                <img src="./assets/imgs/khuyen-mai/banner-4.jpg" alt="">
+            </a>
+        </div>
     </div>
+
 </div>
 
 

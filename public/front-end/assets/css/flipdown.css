@@ -70,8 +70,8 @@
   
   .flipdown {
     overflow: visible;
-    width: 510px;
-    height: 110px;
+    width: 100%;
+    height: auto;
   }
   
   .flipdown .rotor-group {
@@ -110,31 +110,31 @@
   .flipdown .rotor-group:nth-child(n+2):nth-child(-n+3):before {
     content: '';
     position: absolute;
-    bottom: 20px;
-    left: 115px;
-    width: 10px;
-    height: 10px;
+    bottom: 15px;
+    left: 95px;
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
   }
   
   .flipdown .rotor-group:nth-child(n+2):nth-child(-n+3):after {
     content: '';
     position: absolute;
-    bottom: 50px;
-    left: 115px;
-    width: 10px;
-    height: 10px;
+    bottom: 45px;
+    left: 95px;
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
   }
   
   .flipdown .rotor {
     position: relative;
     float: left;
-    width: 50px;
-    height: 80px;
+    width: 40px;
+    height: 70px;
     margin: 0px 5px 0px 0px;
     border-radius: 4px;
-    font-size: 4rem;
+    font-size: 2.5rem;
     text-align: center;
     perspective: 200px;
   }
@@ -147,15 +147,15 @@
   .flipdown .rotor-bottom {
     overflow: hidden;
     position: absolute;
-    width: 50px;
-    height: 40px;
+    width: 40px;
+    height: 35px;
   }
   
   .flipdown .rotor-leaf {
     z-index: 1;
     position: absolute;
-    width: 50px;
-    height: 80px;
+    width: 40px;
+    height: 70px;
     transform-style: preserve-3d;
     transition: transform 0s;
   }
@@ -169,8 +169,8 @@
   .flipdown .rotor-leaf-rear {
     overflow: hidden;
     position: absolute;
-    width: 50px;
-    height: 40px;
+    width: 40px;
+    height: 35px;
     margin: 0;
     transform: rotateX(0deg);
     backface-visibility: hidden;
@@ -178,7 +178,7 @@
   }
   
   .flipdown .rotor-leaf-front {
-    line-height: 80px;
+    line-height: 70px;
     border-radius: 4px 4px 0px 0px;
   }
   
@@ -189,7 +189,7 @@
   }
   
   .flipdown .rotor-top {
-    line-height: 80px;
+    line-height: 70px;
     border-radius: 4px 4px 0px 0px;
   }
   
@@ -205,16 +205,16 @@
     position: absolute;
     bottom: 0px;
     left: 0px;
-    width: 50px;
-    height: 40px;
+    width: 40px;
+    height: 35px;
     border-radius: 0px 0px 4px 4px;
   }
   
-  @media (max-width: 550px) {
+  @media (max-width: 992px) {
   
     .flipdown {
-      width: 312px;
-      height: 70px;
+      width: 100%;
+      height: auto;
     }
   
     .flipdown .rotor {
@@ -265,12 +265,12 @@
   
     .flipdown .rotor-leaf-front,
     .flipdown .rotor-top {
-      line-height: 50px;
+      line-height: 40px;
     }
   
     .flipdown .rotor-leaf,
     .flipdown .rotor {
-      height: 50px;
+      height: 40px;
     }
   
     .flipdown .rotor-leaf-front,
@@ -278,6 +278,8 @@
     .flipdown .rotor-top,
     .flipdown .rotor-bottom,
     .flipdown .rotor:after {
-      height: 25px;
+      height: 20px;
     }
   }
+
+    
