@@ -78,7 +78,7 @@
                     Món ăn
                 </div>
                 <div class="title" style="color:#f42f25">Đang khuyến mãi<span></span></div>
-                <img src="./assets/imgs/khuyen-mai/phao-bong.gif" class="pd-head-img" alt="">
+                <img src="{{asset('front-end/assets/imgs/khuyen-mai/phao-bong.gif')}}" class="pd-head-img" alt="">
             </div>
         </div>
 
@@ -86,8 +86,17 @@
             <div class="row">
 
                 @foreach ($product_1 as $item => $value)
-                    
-                    <div class="col-lg-4 col-sm-6 mb-4 ">
+
+                
+                <div class="col-lg-4 col-sm-6 mb-4 ">
+                    <form>
+                        @csrf
+                        <input type="hidden" value="{{$value->id}}" class="product_id_{{$value->id}}">
+                        <input type="hidden" value="{{$value->name}}" class="product_name_{{$value->id}}">
+                        <input type="hidden" value="{{$value->price_old}}" class="product_price_{{$value->id}}">
+                        <input type="hidden" value="{{$value->category->name}}" class="product_category_{{$value->id}}">
+                        <input type="hidden" value="{{$value->image}}" class="product_image_{{$value->id}}">
+                        <input type="hidden" value="1" class="product_quantity_{{$value->id}}">
                         <div class="product__item">
                             <span class="product__sales">-10%</span>
                             <div class="product__image">
@@ -109,20 +118,22 @@
                                     <span>Giá:</span>
                                     <span class="new">30.000đ</span>
                                     <span class="old">{{$value->price_old}}đ</span>
-                                    <a href="#" class="add__to-cart"><i class="bi bi-cart-plus-fill"></i></a>
+                                    <button type="button" data-id_product="{{$value->id}}" class="add__to-cart"><i class="bi bi-cart-plus-fill"></i></button>
                                 </div>
                                 <div class="progress">
                                     <div class="progress-done"></div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </form>
+                </div>
+
 
                     @if ($item == 2)
                         
                     <div class="mt-4 mb-4 show-banner-mobile">
                         <a href="#form" class="d-block">
-                            <img src="{{asset('front-end/assets/imgs/khuyen-mai/banner-4.jpg')}}" alt="">
+                            <img src="{{asset('front-end/assets/imgs/khuyen-mai/banner-3.jpg')}}" alt="">
                         </a>
                     </div>
 
@@ -133,8 +144,8 @@
 
             </div>
 
-            <img src="./assets/imgs/svg/asset-svg2.svg" class="svg-shape-1" alt="">
-            <img src="./assets/imgs/svg/asset-svg3.svg" class="svg-shape-2" style="bottom:-100px" alt="">
+            <img src="{{asset('front-end/assets/imgs/svg/asset-svg2.svg')}}" class="svg-shape-1" alt="">
+            <img src="{{asset('front-end/assets/imgs/svg/asset-svg3.svg')}}" class="svg-shape-2" style="bottom:-100px" alt="">
         </div>
 
     </div>
@@ -144,14 +155,14 @@
     <div class="container">
         <div class="mb-5">
             <a href="#form" class="d-block">
-                <img src="./assets/imgs/khuyen-mai/banner-3.jpg" alt="">
+                <img src="{{asset('front-end/assets/imgs/khuyen-mai/banner-4.jpg')}}" alt="">
             </a>
         </div>
         <div id="form"></div>
         <div class="row">
             <div class="col-lg-6">
                 <div class="promotion-left">
-                    <img src="./assets/imgs/khuyen-mai/gift.png" class="gift-bg" alt="">
+                    <img src="{{asset('front-end/assets/imgs/khuyen-mai/gift.png')}}" class="gift-bg" alt="">
                     <div class="title">
                         "Cơm Heo Quay Anh Mười"
 
@@ -327,7 +338,7 @@
 
         <div class="mt-4 hide-banner-mobile">
             <a href="#form" class="d-block">
-                <img src="./assets/imgs/khuyen-mai/banner-4.jpg" alt="">
+                <img src="{{('front-end/assets/imgs/khuyen-mai/banner-3.jpg')}}" alt="">
             </a>
         </div>
     </div>

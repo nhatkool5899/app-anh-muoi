@@ -10,6 +10,7 @@
     
         <!-- Link cdn -->
         <link href="https://vjs.zencdn.net/8.0.4/video-js.css" rel="stylesheet" />
+        <link href="{{asset('front-end/assets/css/sweetalert.css')}}" rel="stylesheet"> 
         <!-- Slick css -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" integrity="sha512-yHknP1/AwR+yx26cB1y0cjvQUMvEa2PFzt1c9LlS4pRQ5NOTZFWbhBig+X9G9eYW/8m0/4OXNx8pxJ6z57x0dw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css" integrity="sha512-17EgCFERpgZKcm0j0fEq1YCJuyAWdz9KUtv1EjVuaOz8pDnh/0nZxmU6BBXwaaxqoi9PQXnRWqlcDB027hgv9A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -27,7 +28,7 @@
     
         <!-- Send Email -->
         <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        
         <script type="text/javascript">
             (function() {
                 emailjs.init('KZGQOVrpxVXiar4jT');
@@ -35,48 +36,51 @@
         </script>
         <script type="text/javascript">
             window.onload = function() {
-                document.getElementById('contact-form').addEventListener('submit', function(event) {
-                    event.preventDefault();
-    
-                    var inputPhone = document.getElementById('inputPhone');
-                    if(inputPhone.value.length < 10){
-                        swal("Số điện thoại sai định dạng!", "Vui lòng kiểm tra lại", "error");
-                    }else{
-    
-                        emailjs.sendForm('service_xoki6tp', 'template_u77lwvy', this)
-                            .then(function() {
-                                swal("Gửi thành công!", "Cảm ơn bạn đã đăng ký, chúng tôi sẽ sớm liên hệ lại với bạn.", "success")
-                                .then((value) => {
-                                    location.reload();
+                if(document.getElementById('contact-form')){
+                    document.getElementById('contact-form').addEventListener('submit', function(event) {
+                        event.preventDefault();
+        
+                        var inputPhone = document.getElementById('inputPhone');
+                        if(inputPhone.value.length < 10){
+                            swal("Số điện thoại sai định dạng!", "Vui lòng kiểm tra lại", "error");
+                        }else{
+        
+                            emailjs.sendForm('service_xoki6tp', 'template_u77lwvy', this)
+                                .then(function() {
+                                    swal("Gửi thành công!", "Cảm ơn bạn đã đăng ký, chúng tôi sẽ sớm liên hệ lại với bạn.", "success")
+                                    .then((value) => {
+                                        location.reload();
+                                    });
+                                }, function(error) {
+                                    swal("Gửi thất bại!", "Hệ thống đang bảo trì vui lòng quay lại sau.", "error");
+                                    console.log('FAILED...', error);
                                 });
-                            }, function(error) {
-                                swal("Gửi thất bại!", "Hệ thống đang bảo trì vui lòng quay lại sau.", "error");
-                                console.log('FAILED...', error);
-                            });
-                    }
-                });
+                        }
+                    });
+                }
     
-    
-                document.getElementById('contact-form-2').addEventListener('submit', function(event) {
-                    event.preventDefault();
-    
-                    var inputPhone = document.getElementById('inputPhone-2');
-                    if(inputPhone.value.length < 10){
-                        swal("Số điện thoại sai định dạng!", "Vui lòng kiểm tra lại", "error");
-                    }else{
-    
-                        emailjs.sendForm('service_xoki6tp', 'template_u77lwvy', this)
-                            .then(function() {
-                                swal("Gửi thành công!", "Cảm ơn bạn đã đăng ký, chúng tôi sẽ sớm liên hệ lại với bạn.", "success")
-                                .then((value) => {
-                                    location.reload();
+                if(document.getElementById('contact-form-2')){
+                    document.getElementById('contact-form-2').addEventListener('submit', function(event) {
+                        event.preventDefault();
+        
+                        var inputPhone = document.getElementById('inputPhone-2');
+                        if(inputPhone.value.length < 10){
+                            swal("Số điện thoại sai định dạng!", "Vui lòng kiểm tra lại", "error");
+                        }else{
+        
+                            emailjs.sendForm('service_xoki6tp', 'template_u77lwvy', this)
+                                .then(function() {
+                                    swal("Gửi thành công!", "Cảm ơn bạn đã đăng ký, chúng tôi sẽ sớm liên hệ lại với bạn.", "success")
+                                    .then((value) => {
+                                        location.reload();
+                                    });
+                                }, function(error) {
+                                    swal("Gửi thất bại!", "Hệ thống đang bảo trì vui lòng quay lại sau.", "error");
+                                    console.log('FAILED...', error);
                                 });
-                            }, function(error) {
-                                swal("Gửi thất bại!", "Hệ thống đang bảo trì vui lòng quay lại sau.", "error");
-                                console.log('FAILED...', error);
-                            });
-                    }
-                });
+                        }
+                    });
+                }
             }
         </script>
     </head>
@@ -138,7 +142,7 @@
                                 <i class="bi bi-search"></i>
                             </span>
                             <div class="cart">
-                                <a href="{{url('gio-hang')}}" class="cart__add"><i class="bi bi-cart"></i> <span>4</span></a>
+                                <a href="{{url('gio-hang')}}" class="cart__add"><i class="bi bi-cart"></i> <span class="number__item-cart">0</span></a>
                             </div>
                         </div>
                     </div>
@@ -163,25 +167,25 @@
                         <div class="col-lg-3">
                             <div class="ft-logo">
                                 <a href="#">
-                                    <img src="./assets/imgs/logo.jpg" alt="">
+                                    <img src="{{asset('front-end/assets/imgs/logo.jpg')}}" alt="">
                                 </a>
                                 <span class="logo__text">Anh mười Food<span>.</span></span>
                             </div>
                             <div class="ft-about">
-                                Financial experts support or help you to to find out which way you can raise your funds more.
+                                Công ty TNHH thực phẩm Anh Mười chuyển cung cấp các loại món ăn và thực phẩm từ heo quay, gà, cùng các loại nước uống.
                             </div>
                             <ul class="ft-social">
-                                <li><a href="#"><i class="bi bi-facebook"></i></a></li>
-                                <li><a href="#"><i class="bi bi-twitter"></i></a></li>
+                                <li><a href="https://www.facebook.com/anhmuoifood" target="_blank"><i class="bi bi-facebook"></i></a></li>
+                                <li><a href="#" target="_blank"><i class="bi bi-youtube"></i></a></li>
                                 <li><a href="#"><i class="bi bi-instagram"></i></a></li>
-                                <li><a href="#"><i class="bi bi-tiktok"></i></a></li>
+                                <li><a href="https://www.tiktok.com/@comheoquay_anhmuoi"><i class="bi bi-tiktok"></i></a></li>
                             </ul>
                         </div>
                         <div class="col-lg-3">
                             <div class="ft-title">Thông tin liên hệ</div>
-                            <p class="ft-paragraph">+1 (062) 109-9222</p>
-                            <p class="ft-paragraph">Info@YourGmail24.com</p>
-                            <p class="ft-paragraph">153 Williamson Plaza, Maggieberg, MT 09514</p>
+                            <p class="ft-paragraph">Điện thoại: 0939 367 377</p>
+                            <p class="ft-paragraph">Email: thucphamanhmuoi@gmail.com</p>
+                            <p class="ft-paragraph">Địa chỉ: 325 đường 30/4, phường Xuân Khánh, quận Ninh Kiều, thành phố Cần Thơ</p>
                         </div>
                         <div class="col-lg-3">
                             <div class="ft-title">Giờ mở cửa</div>
@@ -193,10 +197,10 @@
                             <div class="ft-title">Đặt hàng ngay</div>
                             <div class="ft-order">
                                 <a href="#">
-                                    <img src="./assets/imgs/grab-food.png" alt="">
+                                    <img src="{{asset('front-end/assets/imgs/grab-food.png')}}" alt="">
                                 </a>
                                 <a href="#">
-                                    <img src="./assets/imgs/now-food.png" alt="">
+                                    <img src="{{asset('front-end/assets/imgs/now-food.png')}}" alt="">
                                 </a>
                             </div>
                         </div>
@@ -207,9 +211,36 @@
         </footer>
 
         <div class="call-fixed">
-            <a href="tel:0907977341">
-                <img src="./assets/imgs/call-icon.png" alt="">
+            <a href="https://zalo.me/3373850245275017429" target="_blank" class="blue">
+                <img src="{{asset('front-end/assets/imgs/zalo-icon.png')}}" alt="">
             </a>
+            <a href="https://m.me/100387829412462" target="_blank" class="blue">
+                <img src="{{asset('front-end/assets/imgs/fb-icon.png')}}" alt="">
+            </a>
+            <a href="tel:0939367377">
+                <img src="{{asset('front-end/assets/imgs/call-icon.png')}}" alt="">
+            </a>
+        </div>
+        <a href="#top" class="to-top">
+            <i class="bi bi-chevron-up"></i>
+        </a>
+
+
+        <div class="popup">
+            <div class="popup-form">
+                <form class="form-promotion" id="contact-form-2">
+                    <span class="close-popup"><i class="bi bi-x"></i></span>
+                    <div class="ft-title">Đăng ký ngay</div>
+                    <div class="form-subtitle">Để nhận thông tin ưu đãi sớm nhất về các khuyến mãi của Anh Mười</div>
+                    <input type="text" name="name" placeholder="Tên của bạn (*)" required>
+                    <input type="number" name="phone" id="inputPhone-2" placeholder="Số điện thoại (*)" required>
+                    <input type="email" name="email" placeholder="Email">
+                    <input type="text" name="address" placeholder="Địa chỉ liên hệ">
+                    <button class="booking__link" type="submit" style="border: none;">
+                        Xác nhận
+                    </button>
+                </form>
+            </div>
         </div>
     </div>
 
@@ -221,8 +252,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js" integrity="sha512-XtmMtDEcNz2j7ekrtHvOVR4iwwaD6o/FUJe6+Zq+HgcCsk3kj4uSQQR8weQ2QVj1o0Pk6PwYLohm206ZzNfubg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     
     <!-- Js custom -->
-    <script src="./assets/js/flipdown.js"></script>
-    <script src="./assets/js/main.js"></script>
+    <script src="{{asset('front-end/assets/js/sweetalert.js')}}"></script>
+    <script src="{{asset('front-end/assets/js/flipdown.js')}}"></script>
+    <script src="{{asset('front-end/assets/js/main.js')}}"></script>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -240,41 +272,44 @@
 
         var windowWidth = window.innerWidth;
 
+        if(sales){
 
-        window.addEventListener("scroll", function () {
-            if(windowWidth < 450){
-                if (window.scrollY >= 600) {
-                    sales__section.style.height = "126px";
-                    sales.classList.add('active');
-                    to_top.classList.add('active');
-                } else {
-                    sales__section.style.height = "auto";
-                    sales.classList.remove('active');
-                    to_top.classList.remove('active');
+            window.addEventListener("scroll", function () {
+                if(windowWidth < 450){
+                    if (window.scrollY >= 600) {
+                        sales__section.style.height = "126px";
+                        sales.classList.add('active');
+                        to_top.classList.add('active');
+                    } else {
+                        sales__section.style.height = "auto";
+                        sales.classList.remove('active');
+                        to_top.classList.remove('active');
+                    }
+                }else if(windowWidth < 992){
+                    if (window.scrollY >= 900) {
+                        sales__section.style.height = "160px";
+                        sales.classList.add('active');
+                        to_top.classList.add('active');
+                    } else {
+                        sales__section.style.height = "auto";
+                        sales.classList.remove('active');
+                        to_top.classList.remove('active');
+                    }
+                }else{
+    
+                    if (window.scrollY >= 900) {
+                        sales__section.style.height = "205px";
+                        sales.classList.add('active');
+                        to_top.classList.add('active');
+                    } else {
+                        sales__section.style.height = "auto";
+                        sales.classList.remove('active');
+                        to_top.classList.remove('active');
+                    }
                 }
-            }else if(windowWidth < 992){
-                if (window.scrollY >= 900) {
-                    sales__section.style.height = "160px";
-                    sales.classList.add('active');
-                    to_top.classList.add('active');
-                } else {
-                    sales__section.style.height = "auto";
-                    sales.classList.remove('active');
-                    to_top.classList.remove('active');
-                }
-            }else{
+            });
+        }
 
-                if (window.scrollY >= 900) {
-                    sales__section.style.height = "205px";
-                    sales.classList.add('active');
-                    to_top.classList.add('active');
-                } else {
-                    sales__section.style.height = "auto";
-                    sales.classList.remove('active');
-                    to_top.classList.remove('active');
-                }
-            }
-        });
 
 
     </script>
@@ -297,7 +332,7 @@
         })
 
 
-        const myTimeout = setTimeout(myGreeting, 5000);
+        // const myTimeout = setTimeout(myGreeting, 10000);
 
         function myGreeting() {
             $('.popup').addClass('show');

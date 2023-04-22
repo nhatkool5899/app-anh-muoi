@@ -14,12 +14,12 @@
 				<table class="table table-condensed">
 					<thead>
 						<tr class="cart_menu">
-							<td class="image" style="width: 10%">Hình ảnh</td>
-							<td class="description" style="width: 15%">Sản phẩm</td>
-							<td class="price" style="width: 15%">Đơn giá</td>
-							<td class="quantity" style="width: 5%">Số lượng</td>
-							<td class="total" style="width: 20%">Thành tiền</td>
-							<td style="width: 5%"></td>
+							<td>Hình ảnh</td>
+							<td>Sản phẩm</td>
+							<td>Đơn giá</td>
+							<td>Số lượng</td>
+							<td>Thành tiền</td>
+							<td>Xóa</td>
 						</tr>
 					</thead>
 					
@@ -31,54 +31,56 @@
 							@php
 								$total = 0;	
 								$total_coupon = 0;	
+								$number_item = 0;	
 							@endphp
 							@foreach (session()->get('cart') as $item => $cart)
 								@php
-								$sub_total = $cart['product_price'] * $cart['product_qty'];	
+								$sub_total = $cart['product_price'] * $cart['product_quantity'];	
 								$total += $sub_total; 
-								// session()->put('total', $total);
+								$number_item = $number_item + 1;
 								@endphp
 
                                 <tr>
-                                    <td class="cart_product">
-                                        <a href=""><img width="90" src="{{URL::to('public/upload/product/'.$cart['product_image'])}}" alt=""></a>
+                                    <td class="cart__image">
+                                        <img width="90" src="{{asset('uploads/product/'.$cart['product_image'])}}" alt="">
                                     </td>
-                                    <td class="cart_description">
-                                        <h4><a href="">{{$cart['product_name']}}</a></h4>
-                                        <p>Web ID: {{$cart['product_id']}}</p>
+                                    <td class="cart__name">
+                                        <h5>{{$cart['product_name']}}</h5>
+                                        <p>Phân loại: {{$cart['product_category']}}</p>
                                     </td>
-                                    <td class="cart_price">
-                                        <p>{{number_format($cart['product_price'],0,',','.')}} VNĐ</p>
+                                    <td class="cart__price">
+                                        <p>{{number_format($cart['product_price'],0,',','.')}} đ</p>
                                     </td>
-                                    <td class="cart_quantity">
-                                        <div class="cart_quantity_button">
-                                            
-                                                {{-- <a class="cart_quantity_up" href=""> + </a>
-                                                <input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
-                                                <a class="cart_quantity_down" href=""> - </a> --}}
+                                    <td class="cart__quantity">
+                                        <div class="d-flex align-items-center">
+											<span class="btn__change-quantity btn-back-quantity" data-item_stt="{{$item+1}}"><i class="bi bi-dash"></i></span>
+											<input type="hidden" class="pd_price_{{$item+1}}" value="{{$cart['product_price']}}">
+											<input type="hidden" class="pd_name_{{$item+1}}" value="{{$cart['product_name']}}">
 
-                                                <input style="width: 50px; height: 34px; margin-right: 6px" size="2" type="number"
-                                                class="cart_quantity_input" min="1" name="cart_qty[{{$cart['session_id']}}]" value="{{$cart['product_qty']}}">
-                                                
-                                        </div>
+
+											<input type="number" name="quantity" class="input__quantity pd_quantity_{{$item+1}}" value="{{ $cart['product_quantity'] }}">
+
+											<span class="btn__change-quantity btn-forward-quantity" data-item_stt="{{$item+1}}"><i class="bi bi-plus"></i></i></span>
+
+										</div>
                                     </td>
                                     <td class="cart_total">
-                                        <p class="cart_total_price">{{number_format($sub_total,0,',','.')}} VNĐ</p>
+                                        <span class="into_money_{{$item+1}} into_money">{{number_format($sub_total,0,',','.')}}</span> <span>đ</span>
                                     </td>
                                     <td class="cart_delete">
-                                        <a class="cart_quantity_delete" href="{{URL::to('/delete-product-cart/'.$cart['session_id'])}}"><i class="fa-solid fa-delete-left"></i></a>
+                                        <span class="delete_item delete_item_{{$item+1}}" data-item_stt="{{$item+1}}"><i class="bi bi-x"></i></span>
                                     </td>
                                 </tr>
 							@endforeach
-							<?php session()->put('total', $total); ?>
+								<input type="hidden" class="number__item" value="{{$number_item}}">
 								<tr>
 									<td></td>
 									<td></td>
 									<td></td>
 									<td></td>
-									<td class="" colspan="2" style="text-align: center">
-										<input type="submit" value="Cập nhật giỏ hàng" name="update_qty" class="btn btn-default">
-										<a href="{{url('/del-all')}}" class="btn btn-default">Xóa tất cả</a>
+									<td colspan="2">
+										<a href="{{url('/delete-all-item')}}" class="btn-delete-all">Xóa tất cả</a>
+										<span class="btn-order-now">Đặt hàng</span>
 									</td>
 								</tr>
 								<tr>
@@ -87,32 +89,7 @@
 									<td></td>
 									<td></td>
 									<td>
-										<div class="row">
-											<div class="total_area">
-												<ul>
-													<li>Tổng tiền<span>{{number_format($total,0,',','.')}} VNĐ</span></li>
-													<li>Phí phát sinh <span>0</span></li>
-													@if(session()->get('coupon'))
-														@foreach (session()->get('coupon') as $key => $value)
-															@if($value['coupon_condition'] == 1)
-																<li>Mã ưu đãi giảm<span>{{$value['coupon_number']}} %</span></li>
-																@php
-																	$total_coupon = ($total*$value['coupon_number']/100);
-																	echo '<li>Tiền giảm<span>'.number_format($total_coupon,0,',','.').'VNĐ</span></li>';
-																@endphp
-															@elseif($value['coupon_condition'] == 2)
-															<li>Mã ưu đãi giảm<span>{{number_format($value['coupon_number'])}}đ</span></li>
-																@php
-																	$total_coupon = $value['coupon_number'];
-																	echo '<li>Tiền giảm<span>'.number_format($total_coupon,0,',','.').'VNĐ</span></li>';
-																@endphp
-															@endif
-														@endforeach
-													@endif
-													<li style="background: #ccc; color:black; font-weight:600">Tổng thanh toán<span>{{number_format($total - $total_coupon,0,',','.')}} VNĐ</span></li>
-												</ul>
-											</div>
-										</div>
+										<div>Tổng tiền: <span class="order_total">{{number_format($total,0,',','.')}}</span><span> đ</span></div>
 									</td>
 								</tr>
 							@else
@@ -126,37 +103,23 @@
 						</form>
 					</tbody>
 				</table>
-				<div class="box-total">
-					@if(session()->get('cart'))
-					<?php
-					if(session()->get('customer_id')){
-						$i=0;
-						foreach ($check_shipping as $key => $check) {
-							// echo $check->shipping_id;
-							$i++;
-							if($check->customer_id == session()->get('customer_id')){
-								session()->put('shipping_id', $check->shipping_id);
-								?>
-								<a class="btn btn-default check_out buy-product-to-cart pull-right" class="" href="{{URL::to('/payment/'.$check->customer_id)}}">MUA HÀNG</a>
-								<?php
-							}
-						}
-						if($i==0){
-							?>
-							<a class="btn btn-default check_out buy-product-to-cart pull-right" class="" href="{{URL::to('/checkout/'.session()->get('customer_id'))}}">MUA HÀNG</a>
-							<?php	
-						}
-					?>
-						<?php
-					}else{
-						?>
-						<a class="btn btn-default check_out buy-product-to-cart pull-right" class="" href="{{URL::to('/login-checkout')}}">MUA HÀNG</a>
-						<?php
-					}
-					?>
-					@endif
-				</div>
 			</div>
+        </div>
+
+		<div class="order">
+            <div class="popup-form">
+                <form class="form-promotion">
+					@csrf
+                    <span class="close-order"><i class="bi bi-x"></i></span>
+                    <div class="ft-title mb-4">Điền thông tin mua hàng</div>
+                    <input type="text" class="customer_name" placeholder="Tên của bạn (*)">
+                    <input type="number" class="customer_phone" id="inputPhone-2" placeholder="Số điện thoại (*)">
+                    <input type="text" class="customer_address" placeholder="Địa chỉ giao hàng (*)">
+                    <button class="booking__link confirm-order" type="button" style="border: none;">
+                        Xác nhận
+                    </button>
+                </form>
+            </div>
         </div>
     </section>
 @endsection

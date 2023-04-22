@@ -21,6 +21,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [PageController::class, 'sale']);
 Route::get('/trang-chu', [PageController::class, 'sale']);
 Route::get('/gio-hang', [PageController::class, 'cart']);
+Route::post('/add-product-cart', [PageController::class, 'add_product_cart']);
+Route::post('/update-item-quantity', [PageController::class, 'update_item_quantity']);
+Route::post('/delete-item-cart', [PageController::class, 'delete_item_cart']);
+Route::get('/delete-all-item', [PageController::class, 'delete_all_item']);
+Route::post('/customer-order', [PageController::class, 'customer_order']);
 
 
 
