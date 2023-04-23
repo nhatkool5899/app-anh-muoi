@@ -19,4 +19,9 @@ class Order extends Model
 
     protected $primary = 'id';
     protected $table = 'tbl_order';
+
+    public function details()
+    {
+        return $this->hasMany(OrderDetails::class, 'order_id', 'id');
+    }
 }

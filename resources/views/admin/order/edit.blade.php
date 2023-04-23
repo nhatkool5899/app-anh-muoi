@@ -1,116 +1,122 @@
 @extends('layout.admin')
 @section('content')
-    
-            
     <div class="pagetitle">
-        <h1>Quản lý giảm giá</h1>
+        <h1>Quản lý Đơn hàng</h1>
         <nav>
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Daschboard</a></li>
-                <li class="breadcrumb-item">Giảm giá</li>
-                <li class="breadcrumb-item active">Cập nhật</li>
-            </ol>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+            <li class="breadcrumb-item">Đơn hàng</li>
+        </ol>
         </nav>
     </div><!-- End Page Title -->
 
     <section class="section">
         <div class="row">
             <div class="col-12">
-
                 <div class="card">
                     <div class="card-body">
-                    <h5 class="card-title">General Form Elements</h5>
-                    @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                    @endif
-                    @if (session('status'))
-                        <div class="alert alert-success" style="margin-left: 0">
-                            {{ session('status') }}
+                        <div class="box-title">
+                            <h5 class="card-title">Đơn hàng của <strong>"{{$order->name}}"</strong></h5>
                         </div>
-                    @endif
-                    <!-- General Form Elements -->
-                    <form action="{{route('sale.update', ['sale' => $sale->id])}}" enctype="multipart/form-data" method="POST">                      
-                        @csrf
-                        @method("PUT")
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label">Thời gian sale</label>
-                            <div class="col-sm-3">
-                                <input type="text" class="form-control" name="date" id="datepicker" value="{{$sale->date}}">
+                            <div class="information-order col-md-7">
+                                <h4>Thông tin đơn hàng</h4>
+                                <p>Người đặt:  <strong>{{$order->name}}</strong></p>
+                                <p>Số điện thoại: {{$order->phone}}</p>
+                                <p>Địa chỉ: {{$order->address}}</p>
                             </div>
-                            <label class="col-sm-2 col-form-label text-end">Khung giờ:</label>
-                            <div class="col-sm-1">
-                                <input type="text" class="form-control" name="start" value="{{$sale->hour_start}}">
+                            <div class="col-md-3">
+                                <label for="" class="form-label">Trạng thái: 
+                                    <strong style="margin-left: 6px">
+                                        @if ($order->status == 1)
+                                            <span class="status-order" style="color: green">Đơn hàng mới</span>
+                                        @endif 
+                                        @if($order->status == 2)
+                                            <span class="status-order" style="color: blue">Đã xác nhận</span>
+                                        @endif
+                                        @if($order->status == 3)
+                                            <span class="status-order" style="color: #800">Đã giao</span>
+                                        @endif
+                                    </strong>
+                                </label>
+                                <form>
+                                    @csrf
+                                    <input type="hidden" class="order__id" value="{{$order->id}}">
+                                    <select class="change_status form-select">
+                                        <option <?php if($order->status == 1) echo "selected" ?> value="1">Đơn hàng mới</option>
+                                        <option <?php if($order->status == 2) echo "selected" ?> value="2">Đã xác nhận</option>
+                                        <option <?php if($order->status == 3) echo "selected" ?> value="3">Đã giao</option>
+                                    </select>
+                                </form>
                             </div>
-                            <label class="col-sm-1 col-form-label" style="width:2%">-</label>
-                            <div class="col-sm-1">
-                                <input type="text" class="form-control" name="end" value="{{$sale->hour_end}}">
-                            </div>
-                        </div>
 
-                        <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label">Tiêu đề</label>
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control" name="name" value="{{$sale->name}}">
-                            </div>
                         </div>
-                        
-                        <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label">Mô tả</label>
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control" name="description" value="{{$sale->description}}">
+                        @if (session('status'))
+                            <div class="alert alert-success" style="margin-left: 0">
+                                {{ session('status') }}
                             </div>
-                        </div>
-                        
-                        <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label">Giảm giá</label>
-                            <div class="col-sm-4">
-                                <input type="text" class="form-control" name="discount" value="{{$sale->discount}}">
-                            </div>
-                        </div>
-                        
-                        <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label">Sản phẩm giảm</label>
-                            <div class="col-sm-8">
-                                @foreach ($product as $item)
+                        @endif
 
-                                <div class="">
-                                    <input type="checkbox" id="check_{{$item->id}}" class="form-check-inline" name="product_id[]" value="{{$item->id}}">
-                                    <label class="col-form-label check__label" for="check_{{$item->id}}">{{$item->name}}</label>
-                                </div>
+                        <!-- Table with stripped rows -->
+                        <table class="table table-striped table-style">
+                            <thead>
+                                <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Món ăn</th>
+                                <th scope="col">Số lượng</th>
+                                <th scope="col">Đơn giá</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                @foreach ($order_details as $item => $value)
+                                    <tr>
+                                        <th scope="row">{{ $item+1 }}</th>
+                                        <td>{{$value->product->name}}</td>
+                                        <td>{{$value->product_quantity}}</td>
+                                        <td>{{$value->product_price}}</td>
+                                    </tr>
                                     
                                 @endforeach
-                            </div>
-                        </div>
+                            </tbody>
+                        </table>
+                        <!-- End Table with stripped rows -->
 
-
-                        <div class="row mb-3">
-                            <div class="col-sm-9"></div>
-                            <div class="col-sm-3">
-                                <button type="submit" class="btn-confirm">Xác nhận <i class="fa-solid fa-floppy-disk"></i></button>
-                            </div>
-                        </div>
-        
-                    </form><!-- End General Form Elements -->
-        
                     </div>
                 </div>
-        
-                </div>
+
+            </div>
         </div>
     </section>
 
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
     <script>
-        
-        $("#datepicker").datepicker();
-    </script>
+        $('.change_status').change(function(){
+            var id = $('.order__id').val();
+            var status = $(this).val();
+            
+            if(id && status){
+                var _token = $('input[name="_token"]').val();
     
+                $.ajax({
+                    url: "/change-status",
+                    method: "POST",
+                    data: {id:id, status:status, _token:_token},
+                    success:function(data){
+                        if(data == "success"){
+                            location.reload();
+                        }else{
+                            console.log("error");
+                        }
+                    }
+                })
+            }
+
+        })
+    </script>
+
 @endsection
+
+

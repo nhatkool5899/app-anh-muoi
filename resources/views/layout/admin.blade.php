@@ -30,8 +30,6 @@
   <!-- Template Main CSS File -->
   <link href="{{asset('back-end/assets/css/style.css')}}" rel="stylesheet">
   <link href="{{asset('back-end/assets/css/main.css')}}" rel="stylesheet">
-  <link rel="stylesheet" href="{{asset('front-end/css/base.css')}}">
-  <link rel="stylesheet" href="{{asset('front-end/css/main.css')}}">
 
   <!-- =======================================================
   * Template Name: NiceAdmin - v2.4.0
@@ -53,7 +51,7 @@
 
     <div class="d-flex align-items-center justify-content-between">
       <a href="index.html" class="logo d-flex align-items-center">
-        <img src="{{asset('back-end/imgs/logo.png')}}" alt="">
+        <img src="{{asset('front-end/assets/imgs/logo.jpg')}}" alt="">
         <span class="d-none d-lg-block">Pacific Amin</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
@@ -168,7 +166,7 @@
 
             <li class="message-item">
               <a href="#">
-                <img src="assets/img/messages-1.jpg" alt="" class="rounded-circle">
+                <img src="{{asset('back-end/assets/img/messages-1.jpg')}}" alt="" class="rounded-circle">
                 <div>
                   <h4>Maria Hudson</h4>
                   <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
@@ -182,7 +180,7 @@
 
             <li class="message-item">
               <a href="#">
-                <img src="assets/img/messages-2.jpg" alt="" class="rounded-circle">
+                <img src="{{asset('back-end/assets/img/messages-2.jpg')}}" alt="" class="rounded-circle">
                 <div>
                   <h4>Anna Nelson</h4>
                   <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
@@ -196,7 +194,7 @@
 
             <li class="message-item">
               <a href="#">
-                <img src="assets/img/messages-3.jpg" alt="" class="rounded-circle">
+                <img src="{{asset('back-end/assets/img/messages-3.jpg')}}" alt="" class="rounded-circle">
                 <div>
                   <h4>David Muldon</h4>
                   <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
@@ -219,7 +217,7 @@
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+            <img src="{{asset('back-end/assets/img/profile-img.jpg')}}" alt="Profile" class="rounded-circle">
             <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
           </a><!-- End Profile Iamge Icon -->
 
@@ -301,6 +299,12 @@
             </a>
         </li>
 
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="{{route('order.index')}}">
+          <i class="bi bi-gem"></i><span>Đơn hàng</span>
+          </a>
+        </li>
+
 
         <li class="nav-heading mt-5">Tài khoản</li>
 
@@ -337,17 +341,9 @@
 
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-    <!-- Vendor JS Files -->
-    <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
-    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/vendor/chart.js/chart.min.js"></script>
-    <script src="assets/vendor/echarts/echarts.min.js"></script>
-    <script src="assets/vendor/quill/quill.min.js"></script>
-    <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
-    <script src="assets/vendor/tinymce/tinymce.min.js"></script>
-    <script src="assets/vendor/php-email-form/validate.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <!-- Template Main JS File -->
+  <script src="{{asset('back-end/assets/vendor/tinymce/tinymce.min.js')}}"></script>
   <script src="{{asset('back-end/ckeditor/ckeditor.js')}}"></script>
 
   
@@ -363,29 +359,6 @@
   CKEDITOR.replace('ckeditor');
   CKEDITOR.replace('ckeditor2');
 </script>
-
-  <script>
-    $('.confirm__add-why').click(function(){
-      var content = $('.inputContent').val();
-
-      if(content){
-
-        var _token = $('input[name="_token"]').val();
-  
-        $.ajax({
-              url: "about/add-why",
-              method: "POST",
-              data:{content:content,_token:_token},
-              success:function(){
-  
-                  location.reload();
-              }
-          });
-      }
-        
-
-    })
-  </script>
 
   <script type="text/javascript">
     // Slug auto

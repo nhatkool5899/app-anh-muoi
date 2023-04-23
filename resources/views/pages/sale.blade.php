@@ -1,7 +1,7 @@
 @extends('layout.page')
 @section('banner')
                 
-{{-- <section>
+<section>
     <div class="video__intro">
         <div class="bg-video"></div>
         <div class="video__main container">
@@ -18,20 +18,20 @@
         </div>
 
     </div>
-</section> --}}
+</section>
 <section class="sales__section">
     <div class="sales">
         <div class="box__sales">
-            <!-- <div class="container sales__container">
+            <div class="container sales__container">
                 <div class="sales__main row">
                     <div class="col-lg-8 col-6">
-                        <div class="sales__title">sale<span>10%</span></div>
+                        <div class="sales__title">Combo<span>60K</span></div>
                         <div class="sales__info">
-                            <div class="sales__name">Cơm đồng giá !</div>
+                            <div class="sales__name">Và ưu đãi mua 2 tặng 1</div>
                             <div class="sales__price">
-                                <span class="price-old">35.000đ</span>
-                                <span>còn</span>
-                                <span class="price-new">30.000đ</span>
+                                <!-- <span class="price-old">35.000đ</span>
+                                <span>còn</span> -->
+                                <!-- <span class="price-new">2 tặng 1</span> -->
                             </div>
                         </div>
                     </div>
@@ -39,10 +39,10 @@
                         <div id="flipdown" class="flipdown"></div>
                     </div>
                 </div>
-            </div> -->
+            <!-- </div>
             <div class="box__sales-title">
                 "Giờ vàng mua hàng bắt đầu từ 18:00 hàng ngày"
-            </div>
+            </div> -->
         </div>
         <div class="timeslot">
             <div class="container">
@@ -83,6 +83,7 @@
         </div>
 
         <div class="product__body">
+            
             <div class="row">
 
                 @foreach ($product_1 as $item => $value)
@@ -117,7 +118,7 @@
                                 <div class="product__info-bottom">
                                     <span>Giá:</span>
                                     <span class="new">30.000đ</span>
-                                    <span class="old">{{$value->price_old}}đ</span>
+                                    <span class="old">{{number_format($value->price_old, 0, ',', '.')}}đ</span>
                                     <button type="button" data-id_product="{{$value->id}}" class="add__to-cart"><i class="bi bi-cart-plus-fill"></i></button>
                                 </div>
                                 <div class="progress">
@@ -153,9 +154,10 @@
 
 <div class="promotion" id="khuyen-mai">
     <div class="container">
-        <div class="mb-5">
-            <a href="#form" class="d-block">
-                <img src="{{asset('front-end/assets/imgs/khuyen-mai/banner-4.jpg')}}" alt="">
+        <div class="mb-5 bg-marketing">
+            <img src="{{asset('front-end/assets/imgs/khuyen-mai/banner-4.jpg')}}" alt="">
+            <a href="#form" class="link__form-contact">
+                <span>ĐĂng ký ngay</span>
             </a>
         </div>
         <div id="form"></div>
@@ -177,7 +179,6 @@
             </div>
             <div class="col-lg-6">
                 <form class="form-promotion" id="contact-form">
-                    <!-- <img src="./assets/imgs/khuyen-mai/vong-quay-gift.png" class="form-vongquay" alt=""> -->
                     <div class="ft-title" style="margin-top: 0;">Gửi thông tin</div>
                     <input type="text" name="name" placeholder="Tên của bạn (*)" required>
                     <input type="number" name="phone" id="inputPhone" placeholder="Số điện thoại (*)" required>
@@ -203,10 +204,21 @@
 
         <div class="product__body">
             <div class="row">
+
+                @foreach ($product_2 as $item)
+
                 <div class="col-lg-4 col-sm-6 mb-4">
+                    <form>
+                        @csrf
+                        <input type="hidden" value="{{$item->id}}" class="product_id_{{$item->id}}">
+                        <input type="hidden" value="{{$item->name}}" class="product_name_{{$item->id}}">
+                        <input type="hidden" value="{{$item->price_old}}" class="product_price_{{$item->id}}">
+                        <input type="hidden" value="{{$item->category->name}}" class="product_category_{{$item->id}}">
+                        <input type="hidden" value="{{$item->image}}" class="product_image_{{$item->id}}">
+                        <input type="hidden" value="1" class="product_quantity_{{$item->id}}">
                     <div class="product__item">
                         <div class="product__image">
-                            <img src="./assets/imgs/mon-them/canh-bap.png" alt="">
+                            <img src="{{asset('uploads/product/'.$item->image)}}" alt="">
                         </div>
                         <div class="product__info">
                             <div class="product__info-top">
@@ -219,126 +231,32 @@
                                     <i class="bi bi-star"></i>
                                 </span>
                             </div>
-                            <div class="product__info-middle">Canh bắp</div>
+                            <div class="product__info-middle">{{$item->name}}</div>
                             <div class="product__info-bottom">
                                 <span>Giá:</span>
-                                <span class="new">12.000đ</span>
+                                <span class="new">{{number_format($item->price_old, 0, ',', '.')}}đ</span>
                             </div>
-                            <a href="#" class="btn__order-now"><i class="bi bi-cart-plus-fill"></i></a>
+
+                            <button type="button" data-id_product="{{$value->id}}" class="add__to-cart"><i class="bi bi-cart-plus-fill"></i></button>
                         </div>
                     </div>
+                    </form>
                 </div>
-                <div class="col-lg-4 col-sm-6 mb-4">
-                    <div class="product__item">
-                        <div class="product__image">
-                            <img src="./assets/imgs/mon-them/canh-kho-qua.png" alt="">
-                        </div>
-                        <div class="product__info">
-                            <div class="product__info-top">
-                                <span>Soup</span>
-                                <span class="star">
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                </span>
-                            </div>
-                            <div class="product__info-middle">Canh khổ qua</div>
-                            <div class="product__info-bottom">
-                                <span>Giá:</span>
-                                <span class="new">12.000đ</span>
-                            </div>
-                            <a href="#" class="btn__order-now"><i class="bi bi-cart-plus-fill"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6 mb-4">
-                    <div class="product__item">
-                        <div class="product__image">
-                            <img src="./assets/imgs/mon-them/canh-cai.png" alt="">
-                        </div>
-                        <div class="product__info">
-                            <div class="product__info-top">
-                                <span>Soup</span>
-                                <span class="star">
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                </span>
-                            </div>
-                            <div class="product__info-middle">Canh cải ngọt</div>
-                            <div class="product__info-bottom">
-                                <span>Giá:</span>
-                                <span class="new">12.000đ</span>
-                            </div>
-                            <a href="#" class="btn__order-now"><i class="bi bi-cart-plus-fill"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6 mb-4">
-                    <div class="product__item">
-                        <div class="product__image">
-                            <img src="./assets/imgs/mon-them/com-trang.png" alt="">
-                        </div>
-                        <div class="product__info">
-                            <div class="product__info-top">
-                                <span>Rice</span>
-                                <span class="star">
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star"></i>
-                                </span>
-                            </div>
-                            <div class="product__info-middle">Cơm trắng</div>
-                            <div class="product__info-bottom">
-                                <span>Giá:</span>
-                                <span class="new">7.000đ</span>
-                            </div>
-                            <a href="#" class="btn__order-now"><i class="bi bi-cart-plus-fill"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6 mb-4">
-                    <div class="product__item">
-                        <div class="product__image">
-                            <img src="./assets/imgs/mon-them/com-rang.png" alt="">
-                        </div>
-                        <div class="product__info">
-                            <div class="product__info-top">
-                                <span>Rice</span>
-                                <span class="star">
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star"></i>
-                                </span>
-                            </div>
-                            <div class="product__info-middle">Cơm rang</div>
-                            <div class="product__info-bottom">
-                                <span>Giá:</span>
-                                <span class="new">10.000đ</span>
-                            </div>
-                            <a href="#" class="btn__order-now"><i class="bi bi-cart-plus-fill"></i></a>
-                        </div>
-                    </div>
-                </div>
+                    
+                @endforeach
+
             </div>
 
-            <img src="./assets/imgs/svg/asset-svg3.svg" class="svg-shape-1" alt="">
-            <img src="./assets/imgs/svg/asset-svg2.svg" class="svg-shape-2" alt="">
-            <img src="./assets/imgs/svg/asset-svg5.svg" class="svg-shape-3" alt="">
-            <img src="./assets/imgs/svg/asset-svg8.svg" class="leaf-shape-3" alt="">
+            <img src="{{asset('front-end/assets/imgs/svg/asset-svg3.svg')}}" class="svg-shape-1" alt="">
+            <img src="{{asset('front-end/assets/imgs/svg/asset-svg2.svg')}}" class="svg-shape-2" alt="">
+            <img src="{{asset('front-end/assets/imgs/svg/asset-svg5.svg')}}" class="svg-shape-3" alt="">
+            <img src="{{asset('front-end/assets/imgs/svg/asset-svg8.svg')}}" class="leaf-shape-3" alt="">
         </div>
 
-        <div class="mt-4 hide-banner-mobile">
-            <a href="#form" class="d-block">
-                <img src="{{('front-end/assets/imgs/khuyen-mai/banner-3.jpg')}}" alt="">
+        <div class="mt-4 bg-marketing">
+            <img src="{{asset('front-end/assets/imgs/khuyen-mai/banner-3.jpg')}}" alt="">
+            <a href="#form" class="link__form-contact">
+                <span>ĐĂng ký ngay</span>
             </a>
         </div>
     </div>

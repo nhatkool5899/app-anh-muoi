@@ -258,7 +258,7 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            let timer_ = 1681965698//unix timestamp
+            let timer_ = 1691965698//unix timestamp
             let flipdown = new FlipDown(timer_)
                 .start()
                 .ifEnded(() => {
@@ -332,7 +332,7 @@
         })
 
 
-        // const myTimeout = setTimeout(myGreeting, 10000);
+        const myTimeout = setTimeout(myGreeting, 10000);
 
         function myGreeting() {
             $('.popup').addClass('show');

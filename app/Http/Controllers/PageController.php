@@ -17,8 +17,9 @@ class PageController extends Controller
     public function sale()
     {
         $product_1 = Product::with('category')->where('category_id', 1)->orWhere('category_id', 2)->get();
+        $product_2 = Product::with('category')->Where('category_id', 3)->get();
 
-        return view('pages.sale', compact('product_1'));
+        return view('pages.sale', compact('product_1','product_2'));
     }
 
     public function cart()

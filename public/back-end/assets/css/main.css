@@ -355,3 +355,9 @@
     0%{opacity: 0;}
     100%{opacity: 1;}
 }
+
+
+
+.status-order{
+    font-weight: 600;
+}

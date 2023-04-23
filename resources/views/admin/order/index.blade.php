@@ -32,6 +32,7 @@
                                 <th scope="col">Người đặt</th>
                                 <th scope="col">Số điện thoại</th>
                                 <th scope="col">Địa chỉ</th>
+                                <th scope="col">Trang thái</th>
                                 <th scope="col">Thao tác</th>
                                 </tr>
                             </thead>
@@ -44,7 +45,18 @@
                                         <td>{{$value->phone}}</td>
                                         <td>{{$value->address}}</td>
                                         <td>
-                                            <a href="{{route('order.edit', ['order' => $value->id])}}" class="edit-icon"><i class="fa-solid fa-pen"></i></a>
+                                            @if ($value->status == 1)
+                                                <span class="status-order" style="color: green">Đơn hàng mới</span>
+                                            @endif 
+                                            @if($value->status == 2)
+                                                <span class="status-order" style="color: blue">Đã xác nhận</span>
+                                            @endif
+                                            @if($value->status == 3)
+                                                <span class="status-order" style="color: #800">Đã giao</span>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            <a href="{{route('order.edit', ['order' => $value->id])}}" class="edit-icon"><i class="fa-solid fa-eye"></i></a>
 
                                             <form action="{{route('order.destroy',['order' => $value->id])}}" method="post" style="display: inline-block">
                                                 @method("DELETE")

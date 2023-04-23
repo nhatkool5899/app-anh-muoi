@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SalesController;
@@ -33,7 +34,9 @@ Route::get('/admin', [AdminController::class, 'index']);
 Route::post('/login', [AdminController::class, 'login']);
 Route::get('/logout', [AdminController::class, 'logout']);
 Route::get('/dashboard', [AdminController::class, 'dashboard']);
+Route::post('/change-status', [OrderController::class, 'change_status']);
 
 
 Route::resource('/product', ProductController::class);
 Route::resource('/sale', SalesController::class);
+Route::resource('/order', OrderController::class);

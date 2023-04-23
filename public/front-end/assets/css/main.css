@@ -5,7 +5,6 @@
     left: 0;
     width: 100%;
     background: #fff;
-    box-shadow: 1px 1px 10px rgba(0,0,0,.15);
     z-index: 99;
 }
 /* .header.active{
@@ -92,7 +91,7 @@
     padding: 8px 30px;
     color: #fff;
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 600;
     background: var(--primary-color-2);
     text-transform: uppercase;
     transition: .3s;
@@ -1524,7 +1523,6 @@
     text-align: center;
     margin-bottom: 10px;
 }
-
 .close-popup, .close-order{
     position: absolute;
     top: 4px;
@@ -1545,7 +1543,6 @@
     color: #fff;
 }
 
-
 .show-banner-mobile{
     display: none;
 }
@@ -1557,6 +1554,37 @@
         display: none;
     }
 }
+
+
+/* Background marketing */
+
+.bg-marketing{
+    position: relative;
+}
+
+.link__form-contact{
+    position: absolute;
+    top: 62%;
+    left: 18%;
+    background-image: url(../imgs/khuyen-mai/bg-dangky.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 280px;
+    height: 80px;
+    font-size: 24px;
+    text-transform: uppercase;
+    color: #000;
+    font-weight: 600;
+    animation: bounce 1.4s linear infinite;
+}
+
+.link__form-contact span{
+    transform: translateY(-5px);
+}
+
 
 /* Cart */
 .cart{

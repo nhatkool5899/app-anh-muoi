@@ -89,7 +89,7 @@
 									<td></td>
 									<td></td>
 									<td>
-										<div>Tổng tiền: <span class="order_total">{{number_format($total,0,',','.')}}</span><span> đ</span></div>
+										<div style="font-size:20px; color:brown">Tổng tiền: <span class="order_total">{{number_format($total,0,',','.')}}</span><span> đ</span></div>
 									</td>
 								</tr>
 							@else

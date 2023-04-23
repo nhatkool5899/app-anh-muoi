@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\OrderDetails;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -46,7 +47,24 @@ class OrderController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $order = Order::find($id);
+        $order_details = OrderDetails::where('order_id', $id)->get();
+
+        return view('admin.order.edit', compact('order', 'order_details'));
+    }
+
+    public function change_status(Request $request)
+    {
+        $data = $request->all();
+        $order = Order::find($data['id']);
+        if($order){
+            $order->status = $data['status'];
+            $order->save();
+
+            echo "success";
+        }else{
+            echo "error";
+        }
     }
 
     /**
@@ -62,6 +80,8 @@ class OrderController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Order::find($id)->delete();
+
+        return redirect()->back()->with('status', "Xóa thành công");
     }
 }
